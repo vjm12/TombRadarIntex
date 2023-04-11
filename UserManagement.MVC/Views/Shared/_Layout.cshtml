@@ -1,53 +1,120 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Custom User Management</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <title>@ViewData["Title"] - Tomb Radar</title>
+    <!-- Favicon -->
+    <link href="~/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <!--Radzen datagrid-->
+    <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+
+    <!-- Template Stylesheet -->
+    <link href="~/css/style.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Custom User Management</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="UserRoles" asp-action="Index">User Roles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="RoleManager" asp-action="Index">Role Manager</a>
-                        </li>
-                    </ul>
+<header style="background-color: grey">
+    <!-- Spinner Start -->
+    <!--<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>-->
+    <!-- Spinner End -->
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 px-4 px-lg-5">
+        <a asp-controller="Home" asp-action="Index" class="navbar-brand d-flex align-items-center">
+            <h2 class="m-0 text-primary">Tomb Radar</h2>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-4 py-lg-0">
+                <a asp-controller="Home" asp-action="Index" class="nav-item nav-link active">Home</a>
+                <a asp-controller="Home" asp-action="Summary" class="nav-item nav-link">Burial Summary</a>
+                <a asp-controller="Home" asp-action="Analysis_Supervised" class="nav-item nav-link">Supervised Analysis</a>
+                <a asp-controller="Home" asp-action="Analysis_Unsupervised" class="nav-item nav-link">Unsupervised Analysis</a>
+            </div>
+
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" @*data-bs-toggle="dropdown"*@>Admin</a>
+                <div class="dropdown-menu rounded-0 rounded-bottom m-0">
+                    <a asp-controller="UserRoles" asp-action="Index" class="dropdown-item">User Roles </a>
+                    <a asp-controller="RoleManager" asp-action="Index" class="dropdown-item">Role Manager</a>
                 </div>
             </div>
-        </nav>
-    </header>
+            <div class="h-100 d-lg-inline-flex align-items-center d-none">
+                <partial name="_LoginPartial" />
+            </div>
+            <div class="h-100 d-lg-inline-flex align-items-center d-none">
+                <a class="btn btn-square rounded-circle bg-light text-primary me-2" href=""> <img class="img-fluid" src="~/img/icon/facebook.png" alt="Icon"></a>
+                <a class="btn btn-square rounded-circle bg-light text-primary me-2" href=""> <img class="img-fluid" src="~/img/icon/instagram.png" alt="Icon"></a>
+                <a class="btn btn-square rounded-circle bg-light text-primary me-2" href=""> <img class="img-fluid" src="~/img/icon/twitter.png" alt="Icon"></a>
+                <a class="btn btn-square rounded-circle bg-light text-primary me-0" href=""> <img class="img-fluid" src="~/img/icon/linkedin.png" alt="Icon"></a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+</header>
+<body style="background-color:black">
+    <partial name="_CookieConsentPartial" />
     <div class="container">
-        <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - UserManagement.MVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
 </body>
-</html>
+<footer class="border-top footer text-muted">
+    <!-- Copyright Start -->
+    <div class="container-fluid py-4" style="background: #000000;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="#">TombRadar</a>, All Right Reserved. <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                    Designed By <a class="border-bottom" href="">HTML Codex</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+</footer>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/lib/wow/wow.min.js"></script>
+<script src="~/lib/easing/easing.min.js"></script>
+<script src="~/lib/waypoints/waypoints.min.js"></script>
+<script src="~/lib/counterup/counterup.min.js"></script>
+<script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="~/lib/isotope/isotope.pkgd.min.js"></script>
+<script src="~/lib/lightbox/js/lightbox.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="~/js/main.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@RenderSection("Scripts", required: false)
