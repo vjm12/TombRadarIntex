@@ -1,0 +1,16 @@
+﻿@model List<Microsoft.AspNetCore.Identity.IdentityRole>
+    @{
+        ViewData["Title"] = "Remove Role";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        string roleId = Context.Request.Query["roleId"];
+    }
+
+    <!--Create a page view to delete a record-->
+    <h2>Confirm Deletion</h2>
+    <h3>Are you sure you want to delete the role @roleId?</h3>
+
+    <form method="post" asp-controller="RoleManager" asp-action="RemoveRole">
+        <button type="submit">Delete</button>
+        <a asp-controller="RoleManager" asp-action="Index" class="btn btn-info">Cancel</a>
+        <input type="hidden" name="roleId" value="@roleId" />
+    </form>

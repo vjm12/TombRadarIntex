@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,8 @@ namespace UserManagement.MVC.Controllers
             _roleManager = roleManager;
             _userManager = userManager;
         }
+        [Authorize(Roles = "SuperAdmin, Admin")]
+
         public async Task<IActionResult> Index()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -35,6 +38,8 @@ namespace UserManagement.MVC.Controllers
             }
             return View(userRolesViewModel);
         }
+        [Authorize(Roles = "SuperAdmin, Admin")]
+
         public async Task<IActionResult> Manage(string userId)
         {
             ViewBag.userId = userId;

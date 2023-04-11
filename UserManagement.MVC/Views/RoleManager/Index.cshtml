@@ -28,6 +28,9 @@
             <tr>
                 <td>@role.Id</td>
                 <td>@role.Name</td>
+                <td>
+                   <a asp-controller="RoleManager" asp-action="RemoveRole" asp-route-roleid="@role.Id">Remove</a>
+                </td>
             </tr>
         }
 
