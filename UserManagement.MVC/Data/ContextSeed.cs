@@ -9,6 +9,6 @@ namespace UserManagement.MVC.Data
 {
     public static class ContextSeed
     {
-       
+        //used for testing by seeding data into the database. Not needed in production
     }
 }

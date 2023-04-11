@@ -12,6 +12,7 @@ using UserManagement.MVC.Models;
 
 namespace UserManagement.MVC.Controllers
 {
+    //manage roles in the system
     public class RoleManagerController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -34,12 +35,13 @@ namespace UserManagement.MVC.Controllers
             }
             return RedirectToAction("Index");
         }
-
+        //go to the confirm deletion page
         [HttpGet]
         public IActionResult RemoveRole()
         {
             return View();
         }
+        //after the role is deleted then redirect to the role index page
         [HttpPost]
         public async Task<IActionResult> RemoveRole(string roleId)
         {

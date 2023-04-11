@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserManagement.MVC.Models
 {
+    //keeps track of user information
     public class UserRolesViewModel
     {
         public string UserId { get; set; }

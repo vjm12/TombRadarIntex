@@ -10,6 +10,7 @@ using UserManagement.MVC.Models;
 
 namespace UserManagement.MVC.Controllers
 {
+    //This controller deals with managing users and assigning users certain roles
     public class UserRolesController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -20,8 +21,10 @@ namespace UserManagement.MVC.Controllers
             _roleManager = roleManager;
             _userManager = userManager;
         }
+        //Only authorized roles can access the page
         [Authorize(Roles = "SuperAdmin, Admin")]
 
+        //list all users and their roles
         public async Task<IActionResult> Index()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -38,6 +41,7 @@ namespace UserManagement.MVC.Controllers
             }
             return View(userRolesViewModel);
         }
+        //manage roles view where you can edit a user's roles
         [Authorize(Roles = "SuperAdmin, Admin")]
 
         public async Task<IActionResult> Manage(string userId)
@@ -70,6 +74,8 @@ namespace UserManagement.MVC.Controllers
             }
             return View(model);
         }
+        [Authorize(Roles = "SuperAdmin, Admin")]
+
         [HttpPost]
         public async Task<IActionResult> Manage(List<ManageUserRolesViewModel> model, string userId)
         {
@@ -97,11 +103,16 @@ namespace UserManagement.MVC.Controllers
         {
             return new List<string>(await _userManager.GetRolesAsync(user));
         }
+        [Authorize(Roles = "SuperAdmin, Admin")]
+        //delete a user confirmation page
         [HttpGet]
         public IActionResult DeleteUserAsync()
         {
             return View();
         }
+        [Authorize(Roles = "SuperAdmin, Admin")]
+
+        //delete the record and get redirected back to the user record page if successful
         [HttpPost]
         public async Task<IActionResult> DeleteUser(string userId)
         {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserManagement.MVC.Models
 {
+    //model for users that are registered in the system
     public class ApplicationUser : IdentityUser
     {
         public string FirstName { get; set; }
