@@ -97,5 +97,23 @@ namespace UserManagement.MVC.Controllers
         {
             return new List<string>(await _userManager.GetRolesAsync(user));
         }
+        [HttpGet]
+        public IActionResult DeleteUserAsync()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            if (userId != null)
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user != null)
+                {
+                    await _userManager.DeleteAsync(user);
+                }
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
