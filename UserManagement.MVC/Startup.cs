@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using UserManagement.MVC.Data;
 using UserManagement.MVC.Models;
+using UserManagement.MVC.Views.Component;
 
 namespace UserManagement.MVC
 {
@@ -31,6 +32,7 @@ namespace UserManagement.MVC
             .AddDefaultTokenProviders();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddScoped<BurialSummary1>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -79,8 +81,33 @@ namespace UserManagement.MVC
 
             app.Use(async (context, next) =>
             {
-                context.Response.Headers.Add("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self'; front-src 'self'; img-src 'self'; frame-src 'self'");
+                //context.Response.Headers.Add("Content-Security-Policy", 
+                //    "default-src 'self'; script-src 'self' https://code.jquery.com/jquery-3.4.1.min.js https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js " +
+                //    "'unsafe-inline';" +
+                //    "style-src 'self' https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap https://fonts.gstatic.com https://fonts.googleapis.com  https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css; " +
+                //    "font-src 'self'; " +
+                //    "img-src 'self'; frame-src 'self'");
 
+                //                context.Response.Headers.Add("Content-Security-Policy",
+                //  "default-src 'self'; " +
+                //  "script-src 'self' https://code.jquery.com/jquery-3.4.1.min.js https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js 'unsafe-inline'; " +
+                //  "style-src 'self' https://fonts.googleapis.com/css2?family=Open+Sans:wght@400 'unsafe-inline'; " +
+                //  "font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css; " +
+                //  "img-src 'self'; " +
+                //  "frame-src 'self'; " +
+                //  "object-src 'none'; " +
+                //  "base-uri 'self';"
+                //);
+                context.Response.Headers.Add("Content-Security-Policy",
+                    "default-src 'self'; " +
+                    "script-src 'self' https://code.jquery.com/jquery-3.4.1.min.js https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js " +
+                    "'unsafe-inline'; " +
+                    "style-src 'self' https://fonts.googleapis.com/css2?family=Open+Sans:wght@400 'unsafe-inline'; " +
+                    "style-src-elem 'self' https://fonts.googleapis.com/css2?family=Open+Sans:wght@400 https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css 'unsafe-inline'; " +
+                    "font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css; " +
+                    "img-src 'self'; " +
+                    "frame-src 'self';"
+                   );
                 await next();
             });
 

@@ -22,6 +22,20 @@ namespace UserManagement.MVC.Controllers
         {
             return View();
         }
+        public IActionResult Summary()
+        {
+            return View();
+        }
+
+        public IActionResult Analysis_Supervised()
+        {
+            return View();
+        }
+
+        public IActionResult Analysis_Unsupervised()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
