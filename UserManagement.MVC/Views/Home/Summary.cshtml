@@ -1,11 +1,13 @@
 ﻿@using Radzen.Blazor.Rendering
 @using UserManagement.MVC.Models
 @using Microsoft.AspNetCore.Http
-@using UserManagement.MVC.Views.Component
+@using UserManagement.MVC.Views.Components
 
 @{
     ViewData["Title"] = "Summary";
 }
+
+@model BurialMainViewModel
 
 <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
     <div class="container about px-lg-0">
@@ -28,5 +30,19 @@
     </div>
 </div>
 <div>
-    <component type="typeof(BurialSummary1)" render-mode="ServerPrerendered" />
+    <div class="row m-1 p-1">
+        <div id="types" class="col-3">
+            <vc:types></vc:types>
+        </div>
+        <div class="col-9">
+            <div page-model="@Model.pageInfo" page-action="Summary" page-class-normal="btn-outline-red" page-class-selected="btn-primary" page-class-enabled="true"></div>
+
+            @foreach (Burialmain bm in Model.burialmains)
+            {
+                <partial name="BurialSummary" model="bm" />
+            }
+            <div page-model="@Model.pageInfo" page-action="Summary" page-class-normal="btn-outline-red" page-class-selected="btn-primary" page-class-enabled="true"></div>
+        </div>  
+    </div>  
 </div>
+

@@ -30,13 +30,7 @@
     <link href="~/css/style.css" rel="stylesheet">
 </head>
 <header style="background-color: grey">
-    <!-- Spinner Start -->
-    <!--<div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
-    </div>-->
-    <!-- Spinner End -->
+    
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 px-4 px-lg-5">
         <a asp-controller="Home" asp-action="Index" class="navbar-brand d-flex align-items-center">
@@ -51,14 +45,6 @@
                 <a asp-controller="Home" asp-action="Summary" class="nav-item nav-link">Burial Summary</a>
                 <a asp-controller="Home" asp-action="Analysis_Supervised" class="nav-item nav-link">Supervised Analysis</a>
                 <a asp-controller="Home" asp-action="Analysis_Unsupervised" class="nav-item nav-link">Unsupervised Analysis</a>
-            </div>
-
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" @*data-bs-toggle="dropdown"*@>Admin</a>
-                <div class="dropdown-menu rounded-0 rounded-bottom m-0">
-                    <a asp-controller="UserRoles" asp-action="Index" class="dropdown-item">User Roles </a>
-                    <a asp-controller="RoleManager" asp-action="Index" class="dropdown-item">Role Manager</a>
-                </div>
             </div>
             <div class="h-100 d-lg-inline-flex align-items-center d-none">
                 <partial name="_LoginPartial" />

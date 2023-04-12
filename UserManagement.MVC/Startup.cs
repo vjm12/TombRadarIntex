@@ -9,7 +9,8 @@ using Microsoft.Extensions.Hosting;
 using System;
 using UserManagement.MVC.Data;
 using UserManagement.MVC.Models;
-using UserManagement.MVC.Views.Component;
+using UserManagement.MVC.Views.Components;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 namespace UserManagement.MVC
 {
@@ -32,7 +33,15 @@ namespace UserManagement.MVC
             .AddDefaultTokenProviders();
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddScoped<BurialSummary1>();
+            //for repository pattern of fag database
+            services.AddScoped<IFagElGamousRepository, EFFagELGamousRepository>();
+
+            //connect to postgresconnection
+            services.AddDbContext<fagContext>(options => {
+                options.UseNpgsql(Configuration["ConnectionStrings:PostgresConnection"]);
+            });
+
+
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -113,6 +122,11 @@ namespace UserManagement.MVC
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name:"typepage","{burialsex}/Page{pageNum}", new { Controller = "Home", action = "Summary" });
+                endpoints.MapControllerRoute( "paging", "Page{pageNum}",new {Controller = "Home", action = "Summary", pageNum = 1}); 
+                endpoints.MapControllerRoute("sex", "burialsex", new { Controller = "Home", action = "Summary", pageNum=1 });
+               
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
