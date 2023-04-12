@@ -1,0 +1,32 @@
+﻿@model Burialmain
+<div class=" card card-outline-primary m-1 p-1">
+    <div class="bg-secondary p-1">
+        <h3 style="color:white">ID: @Model.Id</h3>
+        <span class="badge bg-gradient" style="float:right ;color:lawngreen"> ExcavationID: @Model.Burialid</span>
+    </div>
+    <div class="bg-light">
+        <p>
+            Intro: @(Model.Text ?? "Description still coming")
+        </p>
+
+        <ul>
+            <li>
+                Maturity:
+                @if (Model.Adultsubadult == "A")
+                {
+                    <text>Adult</text>
+                }
+                else if (Model.Adultsubadult == "C")
+                {
+                    <text>Sub-Adult</text>
+                }
+                else
+                {
+                    <text>Unknown</text>
+                }
+            </li>
+            <li>Excavation Date: @Model.Fieldbookexcavationyear</li>
+        </ul>
+        <a asp-controller="Home" asp-action="DetailedBurial" asp-route-id="@Model.Id" class="btn btn-outline-primary">View Detailed Discovery </a>
+    </div>
+</div>
