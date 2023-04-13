@@ -8,29 +8,22 @@
 
 @model BurialMainViewModel
 
-<script>
-    const selector = document.getElementById("summary-select");
-    const burialContainer = document.getElementById("burial-container");
-    const textileContainer = document.getElementById("textile-container");
-
-    selector.addEventListener("change", () => {
-        if (selector.value === "Burials") {
-            burialContainer.style.display = "block";
-            textileContainer.style.display = "none";
-        } else {
-            burialContainer.style.display = "none";
-            textileContainer.style.display = "block";
-        }
-    });
-</script>
 <partial name="SummaryWelcome" />
+
+
 <div>
-    <select id="summary-select">
-        <option value="Burials">Burials</option>
-        <option value="Textile">Textile</option>
-    </select>
+    <center>
+        <button id="btn_bur" type="button" onclick="showBurials()" class="btn-lg btn-primary mr-2">Burials</button>
+        <button id="btn_tex" type="button" onclick="showTextile()" class="btn-lg btn-outline-secondary">Textile</button>
+    </center>
 </div>
-<div id="burial-container">
+<div id="burial-container" class="mt-4">
+    <div>
+        <center>
+            <h1 style="color: #DDC82A">Information Regarding every Burial Site found at Fag El-Gamous</h1>
+        </center>
+        
+    </div>
     <div id="main_sum">
         <div class="row m-1 p-1">
             <div id="types" class="col-3">
@@ -49,7 +42,12 @@
     </div>
 </div>
 
-<div id="textile-container" style="display: none;">
+<div id="textile-container" class="mt-4" style="display:none;">
+    <div>
+        <center>
+            <h1 style="color: #DDC82A">Information Regarding Every Textile found at Fag El-Gamous</h1>
+        </center>
+    </div>
     <div id="textile_sum">
         <div class="row m-1 p-1">
             <div id="types" class="col-3">
@@ -67,3 +65,24 @@
         </div>
     </div>
 </div>
+
+<script>
+    function showBurials() {
+        document.getElementById("burial-container").style.display = "block";
+        document.getElementById("textile-container").style.display = "none";
+        document.getElementById("btn_bur").className = "btn-lg btn-primary mr-2";
+        document.getElementById("btn_tex").className = "btn-lg btn-outline-secondary";
+    }
+
+    function showTextile() {
+        document.getElementById("burial-container").style.display = "none";
+        document.getElementById("textile-container").style.display = "block";
+        document.getElementById("btn_tex").className = "btn-lg btn-primary mr-2";
+        document.getElementById("btn_bur").className = "btn-lg btn-outline-secondary";
+    }
+</script>
+
+
+
+
+

@@ -56,7 +56,7 @@ namespace UserManagement.MVC.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=fag;User Id=postgres;Password=rugby1st;");
+                optionsBuilder.UseNpgsql("Server=intex.c7btmthrva1n.us-east-1.rds.amazonaws.com;Port=5432;Database=fag;User Id=postgres;Password=thisisstupid");
             }
         }
 
