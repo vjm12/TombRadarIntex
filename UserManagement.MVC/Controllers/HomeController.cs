@@ -22,19 +22,19 @@ namespace UserManagement.MVC.Controllers
             repo = context;
             _logger = logger;
         }
-        
+
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Summary( string burialdirec, int pageNum = 1)//default will be 1
+        public IActionResult Summary(string burialdirec, int pageNum = 1)//default will be 1
         {
 
             int pagesize = 25;
             var burial = new BurialMainViewModel
             {
                 textiles = repo.textiles
-                .OrderBy(t=>t.Id)
+                .OrderBy(t => t.Id)
                 .Skip((pageNum - 1) * pagesize)
                 .Take(pagesize)
                 ,
@@ -46,13 +46,13 @@ namespace UserManagement.MVC.Controllers
                 .Take(pagesize),
                 pageInfo = new PageInfo
                 {
-                    TotalNumItems = (burialdirec == null? 
+                    TotalNumItems = (burialdirec == null ?
                     repo.burialmains.Count()
-                    : repo.burialmains.Where(x=>x.Squarenorthsouth == burialdirec).Count()),
+                    : repo.burialmains.Where(x => x.Squarenorthsouth == burialdirec).Count()),
                     ItemsPerPage = pagesize,
                     CurrentPage = pageNum
                 }
-            }; 
+            };
 
             return View(burial);
         }
@@ -63,15 +63,15 @@ namespace UserManagement.MVC.Controllers
             var specificburial = repo.burialmains.Single(x => x.Id == id);
             return View(specificburial);
         }
-      //  [HttpPost]
-      //  public IActionResult EditBurial(Burialmain bm)
-      //  {
-      //      fagContext.Update(bm);
-      //      fagContext.saveChanges();
-      //ZZZZZ
+        //  [HttpPost]
+        //  public IActionResult EditBurial(Burialmain bm)
+        //  {
+        //      fagContext.Update(bm);
+        //      fagContext.saveChanges();
+        //ZZZZZ
 
-      //      return RedirectToAction("DisplayMovie");
-      //  }
+        //      return RedirectToAction("DisplayMovie");
+        //  }
         public IActionResult DetailedBurial(long id)
         {
             var specificburial = repo.burialmains.Single(x => x.Id == id);
