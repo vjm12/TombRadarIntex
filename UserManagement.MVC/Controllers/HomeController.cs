@@ -55,20 +55,6 @@ namespace UserManagement.MVC.Controllers
 
             return View(burial);
         }
-        public IActionResult ToggleTable(string table)
-        {
-            if (table == "Textile")
-            {
-                return PartialView("TextileSummaryPartial", new BurialMainViewModel());
-            }
-            else if (table == "Burials")
-            {
-                return PartialView("BurialSummaryPartial", new BurialMainViewModel());
-            }
-            return RedirectToAction("Summary");
-        }
-
-
 
         [HttpGet]
         public IActionResult EditBurial(long id)
