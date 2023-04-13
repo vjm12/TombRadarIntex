@@ -13,20 +13,25 @@ namespace UserManagement.MVC.Controllers
 {
     public class HomeController : Controller
     {
+        private fagContext _fagContext { get; set; }
+
+        
         private IFagElGamousRepository repo;
 
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, IFagElGamousRepository context)
+        public HomeController( fagContext fagContext, ILogger<HomeController> logger, IFagElGamousRepository context)
         {
+            _fagContext = fagContext;
             repo = context;
             _logger = logger;
         }
-
+        //Index View
         public IActionResult Index()
         {
             return View();
         }
+        //Summary View
         public IActionResult Summary( string burialdirec, int pageNum = 1)//default will be 1
         {
 
@@ -55,6 +60,8 @@ namespace UserManagement.MVC.Controllers
 
             return View(burial);
         }
+
+        //Edit Burial View -- Requires Authorization
         [Authorize(Roles="SuperAdmin,Admin,Researcher")]
         [HttpGet]
         public IActionResult EditBurial(long id)
@@ -62,47 +69,79 @@ namespace UserManagement.MVC.Controllers
             var specificburial = repo.burialmains.Single(x => x.Id == id);
             return View(specificburial);
         }
-      //  [HttpPost]
-      //  public IActionResult EditBurial(Burialmain bm)
-      //  {
-      //      fagContext.Update(bm);
-      //      fagContext.saveChanges();
-      //ZZZZZ
 
-      //      return RedirectToAction("DisplayMovie");
-      //  }
+        //Edit Textile View -- Requires Authorization
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        [HttpGet]
+        public IActionResult EditTextile(long id)
+        {
+            var specifictextile = repo.textiles.Single(x => x.Id == id);
+            return View(specifictextile);
+
+        }
+        //Save Burial Changes -- Requires Authorization
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        [HttpPost]
+        public IActionResult EditBurial(Burialmain bm)
+        {
+            _fagContext.Update(bm);
+            _fagContext.SaveChanges();
+
+            return RedirectToAction();
+        }
+        //Delete Burial Confirmation Page -- Requires Authorization
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        [HttpGet]
+        public IActionResult DeleteBurialConfirmation(long id)
+        {
+            var specificburial = repo.burialmains.Single(x => x.Id == id);
+            return View(specificburial);
+        }
+        //Save Burial Removal -- Requires Authorization
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        [HttpPost]
+        public IActionResult DeleteBurialConfirmation(Burialmain bm)
+        {
+            _fagContext.Burialmain.Remove(bm);
+            _fagContext.SaveChanges();
+            return RedirectToAction("Summary");
+        }
+        //Save Textile Changes - Requires authorization
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        [HttpPost]
+        public IActionResult EditTextile(Textile t)
+        {
+            _fagContext.Update(t);
+            _fagContext.SaveChanges();
+
+            return RedirectToAction();
+        }
+        //Save Textile Removal - Requires authorization
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        [HttpPost]
+        public IActionResult DeleteTextileConfirmation(Textile t)
+        {
+            _fagContext.Textile.Remove(t);
+            _fagContext.SaveChanges();
+            return RedirectToAction("Summary");
+        }
+        //Detailed Burial View
         public IActionResult DetailedBurial(long id)
         {
             var specificburial = repo.burialmains.Single(x => x.Id == id);
             return View(specificburial);
         }
-        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
-        [HttpGet]
-        public IActionResult DeleteBurial(long id)
-        {
-            var specificburial = repo.burialmains.Single(x => x.Id == id);
-            return View(specificburial);
-        }
-
-        //[HttpPost]
-        //public IActionResult DeleteBurial(long id)
-        //{
-        //    var specificburial = repo.burialmains.Single(x => x.Id == id);
-        //    repo.burialmains.Remove(specificburial);
-        //    repo.SaveChanges();
-        //    return RedirectToAction("Summary");
-        //}
-
+        //Supervised Analysis View
         public IActionResult Analysis_Supervised()
         {
             return View();
         }
-
+        //Unsupervised Analysis View
         public IActionResult Analysis_Unsupervised()
         {
             return View();
         }
-
+        //Privacy View
         public IActionResult Privacy()
         {
             return View();

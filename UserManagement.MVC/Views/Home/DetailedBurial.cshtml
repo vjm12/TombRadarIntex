@@ -3,34 +3,86 @@
 @inject UserManager<ApplicationUser> UserManager
 
 @model Burialmain
+
+@{
+    ViewData["Title"] = "Detailed Burial";
+}
+
 @if (SignInManager.IsSignedIn(User))
 {
     <div>
         <div class="bg-secondary p-1">
-            <h3 style="color:white">ID: @Model.Id</h3>
+            <h3 style="color:white"> Burial ID: @Model.Id</h3>
         </div>
         <div class="bg-light">
-            Text: @(Model.Text ?? "Information still being collected")<br>
-
-            Square North-South: @(Model.Squarenorthsouth ?? "Information still being collected")<br>
-            North-South: @(Model.Northsouth ?? "Information still being collected")<br>
-            East-West: @(Model.Eastwest ?? "Information still being collected")<br>
-            Depth: @(Model.Depth ?? "Information still being collected")<br>
-            Length: @(Model.Length ?? "Information still being collected")<br>
-            South to Head: @(Model.Southtohead ?? "Information still being collected")<br>
-            South to Feet: @(Model.Southtofeet ?? "Information still being collected")<br>
-            West to Head: @(Model.Westtohead ?? "Information still being collected")<br>
-            Sex: @(Model.Sex ?? "Information still being collected")<br>
-            Hair Color: @(Model.Haircolor ?? "Information still being collected")<br>
-            Adult/Sub-Adult: @(Model.Adultsubadult == "A" ? "Adult" : Model.Adultsubadult == "C" ? "Sub-Adult" : "Information still being collected")<br>
-            Head Direction: @(Model.Headdirection ?? "Information still being collected")<br>
-            Field Book Page: @(Model.Fieldbookpage ?? "Information still being collected")<br>
-            Samples Collected: @(Model.Samplescollected ?? "Information still being collected")<br>
-
-            Wrapping: @(Model.Wrapping ?? "Information still being collected")<br>
-            Preservation: @(Model.Preservation ?? "Information still being collected")<br>
-
-
+            <table class=" table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Square North-South</th>
+                        <td><input disabled="disabled" asp-for="Squarenorthsouth" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>North-South</th>
+                        <td><input disabled="disabled" asp-for="Northsouth" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>East-West</th>
+                        <td><input disabled="disabled" asp-for="Eastwest" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Depth</th>
+                        <td><input disabled="disabled" asp-for="Depth" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Length</th>
+                        <td><input disabled="disabled" asp-for="Length" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>South to Head</th>
+                        <td><input disabled="disabled" asp-for="Southtohead" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th> South to Feet</th>
+                        <td><input disabled="disabled" asp-for="Southtofeet" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>West to Head</th>
+                        <td><input disabled="disabled" asp-for="Westtohead" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Sex</th>
+                        <td><input disabled="disabled" asp-for="Sex" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Hair Color</th>
+                        <td><input disabled="disabled" asp-for="Haircolor" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Adult/Sub-Adult</th>
+                        <td><input disabled="disabled" asp-for="Adultsubadult" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Head Direction</th>
+                        <td><input disabled="disabled" asp-for="Headdirection" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Field Book Page</th>
+                        <td><input disabled="disabled" asp-for="Fieldbookpage" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Samples Collected</th>
+                        <td><input disabled="disabled" asp-for="Samplescollected" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Wrapping</th>
+                        <td><input disabled="disabled" asp-for="Wrapping" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Preservation</th>
+                        <td><input disabled="disabled" asp-for="Preservation" class="form-control" /></td>
+                    </tr>
+                </tbody>
+            </table>
             <a asp-controller="Home" asp-action="Summary" class="btn btn-outline-primary">Return to Summary </a>
             <a asp-controller="Home" asp-action="EditBurial" asp-route-id="@Model.Id" class="btn btn-outline-primary">Edit Burial </a>
             <a asp-controller="Home" asp-action="DeleteBurialConfirmation" asp-route-id="@Model.Id" class="btn btn-outline-primary">Delete Burial </a>
@@ -44,25 +96,74 @@ else
             <h3 style="color:white">ID: @Model.Id</h3>
         </div>
         <div class="bg-light">
-            Text: @(Model.Text ?? "Information still being collected")<br>
-
-            Square North-South: @(Model.Squarenorthsouth ?? "Information still being collected")<br>
-            North-South: @(Model.Northsouth ?? "Information still being collected")<br>
-            East-West: @(Model.Eastwest ?? "Information still being collected")<br>
-            Depth: @(Model.Depth ?? "Information still being collected")<br>
-            Length: @(Model.Length ?? "Information still being collected")<br>
-            South to Head: @(Model.Southtohead ?? "Information still being collected")<br>
-            South to Feet: @(Model.Southtofeet ?? "Information still being collected")<br>
-            West to Head: @(Model.Westtohead ?? "Information still being collected")<br>
-            Sex: @(Model.Sex ?? "Information still being collected")<br>
-            Hair Color: @(Model.Haircolor ?? "Information still being collected")<br>
-            Adult/Sub-Adult: @(Model.Adultsubadult == "A" ? "Adult" : Model.Adultsubadult == "C" ? "Sub-Adult" : "Information still being collected")<br>
-            Head Direction: @(Model.Headdirection ?? "Information still being collected")<br>
-            Field Book Page: @(Model.Fieldbookpage ?? "Information still being collected")<br>
-            Samples Collected: @(Model.Samplescollected ?? "Information still being collected")<br>
-
-            Wrapping: @(Model.Wrapping ?? "Information still being collected")<br>
-            Preservation: @(Model.Preservation ?? "Information still being collected")<br>
+            <table class=" table table-bordered">
+                <tbody>
+                    <tr>
+                        <th>Square North-South</th>
+                        <td><input disabled="disabled" asp-for="Squarenorthsouth" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>North-South</th>
+                        <td><input disabled="disabled" asp-for="Northsouth" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>East-West</th>
+                        <td><input disabled="disabled" asp-for="Eastwest" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Depth</th>
+                        <td><input disabled="disabled" asp-for="Depth" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Length</th>
+                        <td><input disabled="disabled" asp-for="Length" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>South to Head</th>
+                        <td><input disabled="disabled" asp-for="Southtohead" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th> South to Feet</th>
+                        <td><input disabled="disabled" asp-for="Southtofeet" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>West to Head</th>
+                        <td><input disabled="disabled" asp-for="Westtohead" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Sex</th>
+                        <td><input disabled="disabled" asp-for="Sex" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Hair Color</th>
+                        <td><input disabled="disabled" asp-for="Haircolor" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Adult/Sub-Adult</th>
+                        <td><input disabled="disabled" asp-for="Adultsubadult" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Head Direction</th>
+                        <td><input disabled="disabled" asp-for="Headdirection" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Field Book Page</th>
+                        <td><input disabled="disabled" asp-for="Fieldbookpage" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Samples Collected</th>
+                        <td><input disabled="disabled" asp-for="Samplescollected" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Wrapping</th>
+                        <td><input disabled="disabled" asp-for="Wrapping" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <th>Preservation</th>
+                        <td><input disabled="disabled" asp-for="Preservation" class="form-control" /></td>
+                    </tr>
+                </tbody>
+            </table>
 
             <a asp-controller="Home" asp-action="Summary" class="btn btn-outline-primary">Return to Summary </a>
         </div>
