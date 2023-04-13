@@ -1,0 +1,63 @@
+﻿@model Burialmain
+<div>
+    <form method="post">
+        <div asp-validation-summary="All"> </div>
+
+        <label asp-for="Text">Text:</label>
+        <input asp-for="Text" /><br />
+
+        <label asp-for="Squarenorthsouth">Square North-South:</label>
+        <input asp-for="Squarenorthsouth" /><br />
+
+        <label asp-for="Northsouth">North-South:</label>
+        <input asp-for="Northsouth" /><br />
+
+        <label asp-for="Eastwest">East-West:</label>
+        <input asp-for="Eastwest" /><br />
+
+        <label asp-for="Depth">Depth:</label>
+        <input asp-for="Depth" /><br />
+
+        <label asp-for="Length">Length:</label>
+        <input asp-for="Length" /><br />
+
+        <label asp-for="Southtohead">South to Head:</label>
+        <input asp-for="Southtohead" /><br />
+
+        <label asp-for="Southtofeet">South to Feet:</label>
+        <input asp-for="Southtofeet" /><br />
+
+        <label asp-for="Westtohead">West to Head:</label>
+        <input asp-for="Westtohead" /><br />
+
+        <label asp-for="Sex">Sex:</label>
+        <input asp-for="Sex" /><br />
+
+        <label asp-for="Haircolor">Hair Color:</label>
+        <input asp-for="Haircolor" /><br />
+
+        <label asp-for="Adultsubadult">Adult/Sub-Adult:</label>
+        <select asp-for="Adultsubadult">
+            <option value="">Select an option</option>
+            <option value="A">Adult</option>
+            <option value="C">Sub-Adult</option>
+        </select><br />
+
+        <label asp-for="Headdirection">Head Direction:</label>
+        <input asp-for="Headdirection" /><br />
+
+        <label asp-for="Fieldbookpage">Field Book Page:</label>
+        <input asp-for="Fieldbookpage" /><br />
+
+        <label asp-for="Samplescollected">Samples Collected:</label>
+        <input asp-for="Samplescollected" /><br />
+
+        <label asp-for="Wrapping">Wrapping:</label>
+        <input asp-for="Wrapping" /><br />
+
+        <label asp-for="Preservation">Preservation:</label>
+        <input asp-for="Preservation" /><br />
+
+        <button type="submit">Submit Application</button>
+    </form>
+</div>

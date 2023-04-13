@@ -13,5 +13,7 @@ namespace UserManagement.MVC.Models
             context = temp;
         }
         public IQueryable<Burialmain> burialmains => context.Burialmain;
+        public IQueryable<Textile> textiles => context.Textile;
+
     }
 }

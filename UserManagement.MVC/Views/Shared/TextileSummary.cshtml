@@ -1,0 +1,16 @@
+﻿@model Textile
+<div class=" card card-outline-primary m-1 p-1">
+    <div class="bg-secondary p-1">
+        <h3 style="color:white">ID: @Model.Id</h3>
+        <span class="badge bg-gradient" style="float:right ;color:lawngreen"> Textile ID: @Model.Textileid</span>
+    </div>
+    <div class="bg-light">
+        <ul>
+            <li>
+                Locale: @(Model.Locale ??"Locale still coming")
+            </li>
+            <li>@Model.Sampledate</li>
+            <li>@Model.Description</li>
+        </ul>
+    </div>
+</div>
