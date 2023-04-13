@@ -35,8 +35,7 @@ namespace UserManagement.MVC.Controllers
             {
                 textiles = repo.textiles
                 .OrderBy(t=>t.Id)
-                .Skip((pageNum - 1) * pagesize)
-                .Take(pagesize)
+          
                 ,
                 burialmains = repo.burialmains
                 .Where(b => b.Squarenorthsouth == burialdirec | burialdirec == null)
