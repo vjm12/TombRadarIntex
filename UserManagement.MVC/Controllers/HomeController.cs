@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using UserManagement.MVC.Models;
@@ -55,6 +56,7 @@ namespace UserManagement.MVC.Controllers
 
             return View(burial);
         }
+        [Authorize(Roles="SuperAdmin,Admin,Researcher")]
         [HttpGet]
         public IActionResult EditBurial(long id)
         {
@@ -75,6 +77,7 @@ namespace UserManagement.MVC.Controllers
             var specificburial = repo.burialmains.Single(x => x.Id == id);
             return View(specificburial);
         }
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
         [HttpGet]
         public IActionResult DeleteBurial(long id)
         {

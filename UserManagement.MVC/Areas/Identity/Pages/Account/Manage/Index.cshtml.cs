@@ -46,8 +46,6 @@ namespace UserManagement.MVC.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
-            [Display(Name = "Profile Picture")]
-            public byte[] ProfilePicture { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -56,7 +54,6 @@ namespace UserManagement.MVC.Areas.Identity.Pages.Account.Manage
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
             var firstName = user.FirstName;
             var lastName = user.LastName;
-            var profilePicture = user.ProfilePicture;
             Username = userName;
 
             Input = new InputModel
@@ -65,7 +62,6 @@ namespace UserManagement.MVC.Areas.Identity.Pages.Account.Manage
                 Username = userName,
                 FirstName = firstName,
                 LastName = lastName,
-                ProfilePicture = profilePicture
             };
         }
 
@@ -143,16 +139,8 @@ namespace UserManagement.MVC.Areas.Identity.Pages.Account.Manage
                 }
             }
 
-            if (Request.Form.Files.Count > 0)
-            {
-                IFormFile file = Request.Form.Files.FirstOrDefault();
-                using (var dataStream = new MemoryStream())
-                {
-                    await file.CopyToAsync(dataStream);
-                    user.ProfilePicture = dataStream.ToArray();
-                }
-                await _userManager.UpdateAsync(user);
-            }
+            
+            
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
