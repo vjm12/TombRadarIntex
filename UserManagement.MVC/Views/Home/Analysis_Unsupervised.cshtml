@@ -1,3 +1,71 @@
 ﻿@{
     ViewData["Title"] = "Unsupervised Analysis";
 }
+<h1 class="text-white">Visualizations and Unsupervised Models</h1>
+<div>
+    <h4 class="text-white">
+        Visualizations can be useful in data analysis. See what we have found below!
+    </h4>
+</div>
+<br />
+<!--Visualization of decision tree-->
+<div style="background-color:dimgrey" class="container-fluid overflow-hidden my-5 px-lg-0">
+    <div class="container about px-lg-0">
+        <div class="row g-0 mx-lg-0">
+            <div class="col-lg-6 ps-lg-0" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute img-fluid w-100 h-100" src="~/img/tree.png" style="object-fit: cover;" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 about-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                <div class="p-lg-5 pe-lg-0">
+                    <div class="bg-primary mb-3" style="width: 60px; height: 2px;"></div>
+                    <h1 class="display-5 mb-4">Supervised Model</h1>
+                    <p class="mb-4 pb-2">If you have visted our Supervised Model page, you may be wondering how that model works to predict head direction. We used a decision tree to create our model. This image shows how a decision tree works.</p>
+                    <br />
+                    <h3 class="mb-1">More About Decision Trees</h3>
+                    <p class="fw-medium text-primary mb-0">Decision trees use both categorical and numeric data to create paths, or "branches" based on yes/no or true/false criteria. For example, in this tree, the first leaf at the top and is asking if the depth is less than or equal to 1.82. If that is true, then you follow the branch to the left. If it is false, you follow the path to the right. The model continues this process until the prediction is made.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Show confusion matrix of data-->
+<div style="background-color:dimgrey" class="container-fluid overflow-hidden my-5 px-lg-0">
+    <div class="container about px-lg-0">
+        <div class="row g-0 mx-lg-0">
+            <div class="col-lg-6 ps-lg-0" style="min-height: 400px;">
+                <div class="position-relative h-100">
+                    <img class="position-absolute img-fluid w-100 h-100" src="~/img/confusionmatrix.PNG" style="object-fit: cover;" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 about-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                <div class="p-lg-5 pe-lg-0">
+                    <div class="bg-primary mb-3" style="width: 60px; height: 2px;"></div>
+                    <h1 class="display-5 mb-4">Confusion Matrix</h1>
+                    <p class="mb-4 pb-2">Confusion Matrices are visualizations of model effectiveness. This confusion matrix was created based on the decision tree model.</p>
+                    <br />
+                    <h3 class="mb-1">More About Confusion Matrices</h3>
+                    <p class="fw-medium text-primary mb-0">To interpret a matrix, you simply look at the labels. The Predeicted label shows what the model predicted, and the True label shows what the actual data is. In the case of head direction East (shown as E on the matrix), of the 124 total east-facing heads, the model correctly predicted 119 of them.</p>
+
+                </div>
+                </div>
+            </div>
+        </div>
+</div>
+<!--Information about unsupervised model-->
+<h1 class="text-white">Additional Models</h1>
+<div>
+    <h4 class="text-white">Cluster Model</h4>
+</div>
+<div>
+    <p>
+        Cluster models are useful for visualizing natural groupings of data. Although its purpose is not to generate predictions, it can help explore various connections between the data.
+    </p>
+</div>
+<div>
+    <p>To view our 3D interactive cluster model, please click the button below.</p>
+</div>
+
+<a href="~/img/cluster.html" class="btn btn-primary rounded-pill py-md-3 px-md-5 me-3">Animated Model</a>
