@@ -8,5 +8,6 @@ namespace UserManagement.MVC.Models
     public interface IFagElGamousRepository
     {
         IQueryable<Burialmain> burialmains { get; }
+        IQueryable<Textile> textiles { get; }
     }
 }

@@ -19,9 +19,9 @@ namespace UserManagement.MVC.Views.Components
         public IViewComponentResult Invoke()
         {
 
-            ViewBag.SelectedSex = RouteData?.Values["burialsex"];
+            ViewBag.SelectedDirec = RouteData?.Values["burialdirec"];
             var types = repo.burialmains
-                .Select(x => x.Sex)
+                .Select(x => x.Squarenorthsouth)
                 .Distinct()
                 .OrderBy(x => x);
 

@@ -26,23 +26,28 @@ namespace UserManagement.MVC.Controllers
         {
             return View();
         }
-        public IActionResult Summary( string burialsex, int pageNum = 1)//default will be 1
+        public IActionResult Summary( string burialdirec, int pageNum = 1)//default will be 1
         {
 
             int pagesize = 25;
             var burial = new BurialMainViewModel
             {
+                textiles = repo.textiles
+                .OrderBy(t=>t.Id)
+                .Skip((pageNum - 1) * pagesize)
+                .Take(pagesize)
+                ,
                 burialmains = repo.burialmains
-                .Where(b => b.Sex == burialsex | burialsex == null)
+                .Where(b => b.Squarenorthsouth == burialdirec | burialdirec == null)
                 .OrderBy(b => b.Dateofexcavation)
                 //for pagination
                 .Skip((pageNum - 1) * pagesize)
                 .Take(pagesize),
                 pageInfo = new PageInfo
                 {
-                    TotalNumItems = (burialsex == null? 
+                    TotalNumItems = (burialdirec == null? 
                     repo.burialmains.Count()
-                    : repo.burialmains.Where(x=>x.Sex == burialsex).Count()),
+                    : repo.burialmains.Where(x=>x.Squarenorthsouth == burialdirec).Count()),
                     ItemsPerPage = pagesize,
                     CurrentPage = pageNum
                 }
@@ -50,13 +55,41 @@ namespace UserManagement.MVC.Controllers
 
             return View(burial);
         }
+        [HttpGet]
+        public IActionResult EditBurial(long id)
+        {
+            var specificburial = repo.burialmains.Single(x => x.Id == id);
+            return View(specificburial);
+        }
+      //  [HttpPost]
+      //  public IActionResult EditBurial(Burialmain bm)
+      //  {
+      //      fagContext.Update(bm);
+      //      fagContext.saveChanges();
+      //ZZZZZ
 
+      //      return RedirectToAction("DisplayMovie");
+      //  }
         public IActionResult DetailedBurial(long id)
         {
             var specificburial = repo.burialmains.Single(x => x.Id == id);
             return View(specificburial);
         }
+        [HttpGet]
+        public IActionResult DeleteBurial(long id)
+        {
+            var specificburial = repo.burialmains.Single(x => x.Id == id);
+            return View(specificburial);
+        }
 
+        //[HttpPost]
+        //public IActionResult DeleteBurial(long id)
+        //{
+        //    var specificburial = repo.burialmains.Single(x => x.Id == id);
+        //    repo.burialmains.Remove(specificburial);
+        //    repo.SaveChanges();
+        //    return RedirectToAction("Summary");
+        //}
 
         public IActionResult Analysis_Supervised()
         {

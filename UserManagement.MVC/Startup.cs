@@ -33,8 +33,10 @@ namespace UserManagement.MVC
             .AddDefaultTokenProviders();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
             //for repository pattern of fag database
             services.AddScoped<IFagElGamousRepository, EFFagELGamousRepository>();
+            
 
             //connect to postgresconnection
             services.AddDbContext<fagContext>(options => {
@@ -123,9 +125,9 @@ namespace UserManagement.MVC
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
-                    name:"typepage","{burialsex}/Page{pageNum}", new { Controller = "Home", action = "Summary" });
+                    name:"typepage","{burialdirec}/Page{pageNum}", new { Controller = "Home", action = "Summary" });
                 endpoints.MapControllerRoute( "paging", "Page{pageNum}",new {Controller = "Home", action = "Summary", pageNum = 1}); 
-                endpoints.MapControllerRoute("sex", "burialsex", new { Controller = "Home", action = "Summary", pageNum=1 });
+                endpoints.MapControllerRoute("direc", "burialdirec", new { Controller = "Home", action = "Summary", pageNum=1 });
                
                 endpoints.MapControllerRoute(
                     name: "default",
