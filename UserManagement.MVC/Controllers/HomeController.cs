@@ -62,7 +62,7 @@ namespace UserManagement.MVC.Controllers
         }
 
         //Edit Burial View -- Requires Authorization
-        //[Authorize(Roles="SuperAdmin,Admin,Researcher")]
+        [Authorize(Roles="SuperAdmin,Admin,Researcher")]
         [HttpGet]
         public IActionResult EditBurial(long id)
         {
@@ -80,7 +80,7 @@ namespace UserManagement.MVC.Controllers
 
         }
         //Save Burial Changes -- Requires Authorization
-        //[Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
         [HttpPost]
         public IActionResult EditBurial(Burialmain bm)
         {
@@ -90,7 +90,7 @@ namespace UserManagement.MVC.Controllers
             return RedirectToAction("DetailedBurial", new { id = bm.Id });
         }
         //Delete Burial Confirmation Page -- Requires Authorization
-        //[Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
         [HttpGet]
         public IActionResult DeleteBurialConfirmation(long id)
         {
@@ -98,7 +98,7 @@ namespace UserManagement.MVC.Controllers
             return View(specificburial);
         }
         //Save Burial Removal -- Requires Authorization
-        //[Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
         [HttpPost]
         public IActionResult DeleteBurialConfirmation(Burialmain bm)
         {
@@ -157,7 +157,7 @@ namespace UserManagement.MVC.Controllers
             }
         }
         //Save Textile Changes - Requires authorization
-        //[Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
         [HttpPost]
         public IActionResult EditTextile(Textile t)
         {
@@ -176,7 +176,7 @@ namespace UserManagement.MVC.Controllers
         }
 
         //Save Textile Removal - Requires authorization
-        //[Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
         [HttpPost]
         public IActionResult DeleteTextileConfirmation(Textile t)
         {
