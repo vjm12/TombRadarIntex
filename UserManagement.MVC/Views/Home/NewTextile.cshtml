@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Add Textile";
+}
+@model Textile
+<!--New textile form for CRUD-->
+<div class="container">
+    <form method="post">
+        <table class=" table table-bordered">
+            <thead class="bg-primary text-lg-center">Add Textile</thead>
+            <tbody>
+                <tr>
+                    <th>Description:</th>
+                    <td><input asp-for="Description" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Locale:</th>
+                    <td><input asp-for="Locale" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Burial Number:</th>
+                    <td><input asp-for="Burialnumber" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Estimated Period:</th>
+                    <td><input asp-for="Estimatedperiod" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Direction:</th>
+                    <td><input asp-for="Direction" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Photographed Date:</th>
+                    <td><input asp-for="Photographeddate" class="form-control" /></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="text-center">
+            <div asp-validation-summary="All"></div>
+            <button asp-controller="Home" asp-action="Summary">Cancel</button>
+            <button asp-controller="Home" asp-action="Confirmation"type="submit" class="btn btn-primary">Add Textile</button>
+        </div>
+    </form>
+</div>

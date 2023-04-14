@@ -42,12 +42,15 @@ namespace UserManagement.MVC.Infrastructure
             {
                 TagBuilder tb = new TagBuilder("a");
                 tb.Attributes["href"] = uh.Action(PageAction, new { pageNum = i });
+                tb.AddCssClass("btn btn-primary");
 
                 if (PageClassEnabled)
                 {
                     tb.AddCssClass(PageClass);
                     tb.AddCssClass(i == PageModel.CurrentPage ? PageClassSelected : PageClassNormal);
                 }
+                tb.Attributes["style"] = "padding: 0.001rem 0.10rem; margin-right: 0.17rem;";
+
                 tb.AddCssClass("PageClass");
                 tb.InnerHtml.Append(i.ToString());
 

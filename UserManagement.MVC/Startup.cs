@@ -11,6 +11,7 @@ using UserManagement.MVC.Data;
 using UserManagement.MVC.Models;
 using UserManagement.MVC.Views.Components;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
+using Microsoft.ML.OnnxRuntime;
 
 namespace UserManagement.MVC
 {
@@ -44,7 +45,7 @@ namespace UserManagement.MVC
 
             //for repository pattern of fag database
             services.AddScoped<IFagElGamousRepository, EFFagELGamousRepository>();
-            
+
             //connect to postgresconnection
             services.AddDbContext<fagContext>(options => {
                 options.UseNpgsql(Configuration["ConnectionStrings:PostgresConnection"]);
