@@ -27,29 +27,26 @@ namespace UserManagement.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddDbContext<ApplicationDbContext>(options =>
-             //    options.UseSqlServer(
-             //        Configuration.GetConnectionString("DefaultConnection")));
-             //services.AddDatabaseDeveloperPageExceptionFilter();
-             services.AddDbContext<ApplicationDbContext>(options =>
-                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            //services.AddControllersWithViews();
-            //services.AddIdentity<IdentityUser, IdentityRole>()
-            //        .AddEntityFrameworkStores<ApplicationDbContext>()
-            //        .AddDefaultUI()
-            //.AddDefaultTokenProviders();
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>()
+                    .AddDefaultUI()
+            .AddDefaultTokenProviders();
             services.AddControllersWithViews();
             services.AddRazorPages();
 
             //for repository pattern of fag database
             services.AddScoped<IFagElGamousRepository, EFFagELGamousRepository>();
 
+            services.AddSingleton<InferenceSession>(
+                new InferenceSession("wwwroot/model1-2.onxx"));
+
             //connect to postgresconnection
             services.AddDbContext<fagContext>(options => {
                 options.UseNpgsql(Configuration["ConnectionStrings:PostgresConnection"]);
             });
+
+
 
             services.Configure<CookiePolicyOptions>(options =>
             {
