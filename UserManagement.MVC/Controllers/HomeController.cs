@@ -135,14 +135,14 @@ namespace UserManagement.MVC.Controllers
             }
         }
         //Add New Textile
-        [Authorize(Roles ="SuperAdmin,Admin,Researcher")]
+        //[Authorize(Roles ="SuperAdmin,Admin,Researcher")]
         [HttpGet]
         public IActionResult NewTextile()
         {
             return View();
         }
         //Save new textile
-        [Authorize(Roles ="SuperAdmin,Admin,Researcher")]
+        //[Authorize(Roles ="SuperAdmin,Admin,Researcher")]
         public IActionResult NewTextile(Textile t)
         {
             if (ModelState.IsValid)

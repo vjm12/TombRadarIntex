@@ -1,38 +1,55 @@
-﻿@model List<Microsoft.AspNetCore.Identity.IdentityRole>
-@{
-    ViewData["Title"] = "Role Manager";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<!--This view allows the admin to add or delete roles in the system-->
-<h1 class="text-white">Role Manager</h1>
-<form method="post" asp-action="AddRole" asp-controller="RoleManager">
-    <div class="input-group">
-        <input name="roleName" class="form-control w-25">
-        <span class="input-group-btn">
-            <button class="btn btn-info">Add New Role</button>
-        </span>
-    </div>
-</form>
+﻿@model List<ManageUserRolesViewModel>
 
-<table class="table table-striped">
+@{
+    ViewData["Title"] = "Manage User Roles";
+}
+
+<h1>Manage User Roles</h1>
+
+<table class="table">
     <thead>
         <tr>
-
-            <th>Id</th>
+            <th>UserName</th>
             <th>Role</th>
+            <th>Add/Remove</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var role in Model)
-        {
-            <tr>
-                <td>@role.Id</td>
-                <td>@role.Name</td>
-                <td>
-                   <a asp-controller="RoleManager" asp-action="RemoveRole" asp-route-roleid="@role.Id">Remove</a>
-                </td>
-            </tr>
-        }
+
+        <tr>
+            <td>SuperUser@TombRadar.com</td>
+            <td>SuperAdmin</td>
+            <td>
+                <input type="checkbox" />
+            </td>
+        </tr>
+        <tr>
+            <td>cdudley6@gmail.com.com</td>
+            <td>Researcher</td>
+            <td>
+                <input type="checkbox" />
+            </td>
+        </tr>
+        <tr>
+            <td>ldsvmachado12@gmail.com</td>
+            <td>Basic</td>
+            <td>
+                <input type="checkbox" />
+            </td>
+        </tr>
+        <tr>
+            <td>klintyk@byu.edu</td>
+            <td>Admin</td>
+            <td>
+                <input type="checkbox" />
+            </td>
+        </tr>
 
     </tbody>
 </table>
+
+<div class="form-group">
+    <button type="submit" class="btn btn-primary">Save</button>
+</div>
+
+
