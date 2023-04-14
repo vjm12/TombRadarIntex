@@ -1,17 +1,18 @@
-﻿@model List<Microsoft.AspNetCore.Identity.IdentityRole>
+﻿@model Microsoft.AspNetCore.Identity.IdentityUser
+
 @{
     ViewData["Title"] = "Delete User";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    string userId = Context.Request.Query["userId"];
 }
 
-<!--Create a page view to confirm deletion of a user-->
-<h2 class="text-white">Confirm Deletion</h2>
-<h3 class="text-white">Are you sure you want to delete this user?</h3>
+<h1 class="text-white">Delete User</h1>
 
-<form method="post" asp-controller="UserRoles" asp-action="DeleteUser">
-    <button type="submit">Delete</button>
-    <a asp-controller="UserRoles" asp-action="Index" class="btn btn-info">Cancel</a>
-    <input type="hidden" name="userId" value="@userId" />
+<h2 class="text-white">Are you sure you want to delete the user?</h2>
+
+<form method="post" asp-controller="UserRoles" asp-action="DeleteUserConfirmed">
+    <input type="hidden" name="userId" value="@Model.Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-controller="UserRoles" asp-action="Index" class="btn btn-secondary">Cancel</a>
 </form>
+
+
 
