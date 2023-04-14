@@ -31,6 +31,7 @@
             </div>
             <div class="col-9">
                 <div page-model="@Model.pageInfo" page-action="Summary" page-class-normal="btn-outline-red" page-class-selected="btn-primary" page-class-enabled="true"></div>
+                <a asp-controller="Home" asp-action="NewBurial" class="btn btn-primary">Add</a>
 
                 @foreach (Burialmain bm in Model.burialmains)
                 {
@@ -68,5 +69,10 @@
         document.getElementById("textile-container").style.display = "block";
         document.getElementById("btn_tex").className = "btn-lg btn-primary mr-2";
         document.getElementById("btn_bur").className = "btn-lg btn-outline-secondary";
+
+        var section = new URLSearchParams(window.location.search).get('section');
+        if (section === "textile") {
+            document.getElementById("btn_tex").click();
+        }
     }
 </script>

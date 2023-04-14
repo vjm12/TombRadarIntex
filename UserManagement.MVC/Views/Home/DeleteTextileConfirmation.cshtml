@@ -8,11 +8,11 @@
 
 <div class="card bg-light">
     <h2 style="color:red"> CONFIRM DELETE</h2>
-    <h3> Are you sure you want to remove Textile: @Model.Id,from the Database</h3>
-    <h4>Deleting this Textile from the database will be permanant</h4>
+    <h3> Are you sure you want to remove Textile: @Model.Id from the Database</h3>
+    <h4>Deleting this Textile from the database will be permanent</h4>
 
-    <form method="post" asp-action="DeleteFilm">
-        <button style="color:red" type="submit">Yes, Delete Burial</button>
-        <a asp-controller="Home" asp-action="Sumamry" class="btn btn-outline-primary">Cancel</a>
+    <form method="post" asp-action="DeleteTextileConfirmation">
+        <button style="color:red" type="submit">Yes, Delete Textile</button>
+        <a asp-controller="Home" asp-action="Summary" asp-route-id="@Model.Id" class="btn btn-outline-primary">Cancel</a>
     </form>
 </div>
