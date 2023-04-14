@@ -7,7 +7,7 @@
 <div style="background-color:dimgrey" class="container-fluid overflow-hidden my-5 px-lg-0">
     <div class="container about px-lg-0">
         <div class="row g-0 mx-lg-0">
-            
+
             <div class=" about-text py-5 wow fadeIn" data-wow-delay="0.5s" style="text-align:center">
                 <div class="p-lg-5 pe-lg-0">
                     <h1 class="display-5 mb-4">East or West?</h1>
@@ -24,3 +24,259 @@
         </div>
     </div>
 </div>
+<form>
+    <div class="row text-center" style="padding-top:50px">
+        <div class="col-7">
+            <h4>Fill out the form to predict what direction your mummy would most likely be facing</h4>
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="AreaDirection" class="myLabelSuper">Area:</label>
+                <select id="AreaDirection" class="form-control myInput" name="AreaDirection">
+                    <option value="-">-</option>
+                    <option value="NNW">NNW</option>
+                    <option value="NW">NW</option>
+                    <option value="SE" selected>SE</option>
+                    <option value="SW">SW</option>
+                </select>
+            </div>
+            <div class="form-group" style="color: white; margin-bottom: 15px">
+                <label for="ageatdeath" class="myLabelSuper">Age At Death:</label>
+                <select id="ageatdeath" class="form-control myInput" name="ageatdeath">
+                    <option value="-">-</option>
+                    <option value="IN">IN</option>
+                    <option value="C">C</option>
+                    <option value="I">I</option>
+                    <option value="N">N</option>
+                </select>
+            </div>
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="WestToFeet" class="myLabelSuper">West to feet:</label>
+                <input type="number" id="WestToFeet" class="form-control myInput" name="WestToFeet" step="0.01" value="3.46">
+            </div>
+
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="SouthToFeet" class="myLabelSuper">South to feet:</label>
+                <input type="number" id="SouthToFeet" class="form-control myInput" name="SouthToFeet" step="0.01" value="1.75">
+            </div>
+
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="EastWest" class="myLabelSuper">East-West:</label>
+                <select id="EastWest" class="form-control myInput" name="EastWest">
+                    <option value="0" selected>No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="AdultSubadult" class="myLabelSuper">Adult or Subadult:</label>
+                <select id="AdultSubadult" class="form-control myInput" name="AdultSubadult">
+                    <option value="0">Subadult</option>
+                    <option value="1" selected>Adult</option>
+                </select>
+            </div>
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="Depth" class="myLabelSuper">Depth:</label>
+                <input type="number" step="any" id="Depth" class="form-control myInput" name="Depth" value="1.55">
+            </div>
+
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="SouthToHead" class="myLabelSuper">South to Head:</label>
+                <input type="number" step="any" id="SouthToHead" class="form-control myInput" name="SouthToHead" value="1.76">
+            </div>
+
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="WestToHead" class="myLabelSuper">West to Head:</label>
+                <input type="number" step="any" id="WestToHead" class="form-control myInput" name="WestToHead" value="3.06">
+            </div>
+
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="Length" class="myLabelSuper">Length:</label>
+                <input type="number" step="any" id="Length" class="form-control myInput" name="Length" value="0">
+            </div>
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="WrappingH" class="myLabelSuper">Wrapping H:</label>
+                <select id="WrappingH" class="form-control myInput" name="WrappingH">
+                    <option value="0" selected>No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="WrappingS" class="myLabelSuper">Wrapping S:</label>
+                <select id="WrappingS" class="form-control myInput" name="WrappingS">
+                    <option value="0" selected>No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
+                <label for="WrappingW" class="myLabelSuper">Wrapping W:</label>
+                <select id="WrappingW" class="form-control myInput" name="WrappingW">
+                    <option value="0">No</option>
+                    <option value="1" selected>Yes</option>
+                </select>
+            </div>
+
+
+
+            <button id="custom-button">Predict Wrapping!</button>
+        </div>
+    </div>
+</form>
+<h4>Prediction:</h4>
+<h4 id="predictionResult"></h4>
+<script>
+    const customButton = document.getElementById('custom-button');
+    customButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        const inputData = {
+        "depth": 0,
+        "southtohead": 0,
+        "westtohead": 0,
+        "length": 0,
+        "westtofeet": 0,
+        "southtofeet": 3.6,
+        "eastwest_W": 0,
+        "adultsubadult_C": 1,
+        "wrapping_H": 0,
+        "wrapping_S": 0,
+        "wrapping_W": 1,
+        "area_NNW": 0,
+        "area_NW": 0,
+        "area_SE": 1,
+        "area_SW": 0,
+        "ageatdeath_C": 0,
+        "ageatdeath_I": 0,
+        "ageatdeath_IN": 0,
+        "ageatdeath_N": 0
+
+        }
+        function updateInputData() {
+            const depthInput = document.querySelector('#material');
+            const headDirectionInput = document.querySelector('#headDirection');
+            const ageatdeathinput = document.querySelector('#ageatdeath');
+            const areaDirectionInput = document.querySelector('#areaDirection');
+            const wrappingDirectionInput = document.querySelector('#wrappingDirection');
+            const adultsubadultInput = document.querySelector('#adultsubadult');
+            const eastwestInput = document.querySelector('#eastwest');
+            const westToFeetInput = document.querySelector('#westToFeet').value;
+            const southToFeetInput = document.querySelector('#southToFeet').value;
+            const depthInputValue = parseFloat(depthInput.value);
+            const southToHeadInput = document.querySelector('#southToHead').value;
+            const westToHeadInput = document.querySelector('#westToHead').value;
+            const lengthInput = document.querySelector('#length').value;
+
+            inputData.depth = depthInputValue;
+        if (ageatdeathinput === 'IN') {
+                inputData.ageatdeath_IN = 1;
+                inputData.ageatdeath_C = 0;
+                inputData.ageatdeath_N = 0;
+                inputData.ageatdeath_I = 0;
+            }
+        else if (ageatdeathinput === 'C') {
+                inputData.ageatdeath_C = 1;
+                inputData.ageatdeath_A = 0;
+                inputData.ageatdeath_N = 0;
+                inputData.ageatdeath_I = 0;
+            }
+        else if (ageatdeathinput === 'I') {
+                inputData.ageatdeath_I = 1;
+                inputData.ageatdeath_A = 0;
+                inputData.ageatdeath_N = 0;
+                inputData.ageatdeath_C = 0;
+            }
+            else if (ageatdeathinput === 'N') {
+                inputData.ageatdeath_N = 1;
+                inputData.ageatdeath_A = 0;
+                inputData.ageatdeath_C = 0;
+                inputData.ageatdeath_I = 0;
+            }
+        if (areaDirectionInput == 'NNW') {
+            inputData.area_NNW = 1;
+            inputData.area_NW = 0;
+            inputData.area_SE = 0;
+            inputData.area_SW = 0;
+        }
+        else if (areaDirectionInput == 'NW') {
+            inputData.area_NNW = 0;
+            inputData.area_NW = 1;
+            inputData.area_SE = 0;
+            inputData.area_SW = 0;
+        }
+        else if (areaDirectionInput == 'SE') {
+            inputData.area_NNW = 0;
+            inputData.area_NW = 0;
+            inputData.area_SE = 1;
+            inputData.area_SW = 0;
+        }
+        else if (areaDirectionInput == 'SW') {
+            inputData.area_NNW = 0;
+            inputData.area_NW = 0;
+            inputData.area_SE = 0;
+            inputData.area_SW = 1;
+        }
+        else {
+            inputData.area_NNW = 0;
+            inputData.area_NW = 0;
+            inputData.area_SE = 0;
+            inputData.area_SW = 0;
+        }
+
+        if (wrappingDirectionInput == 'H') {
+            inputData.wrapping_H = 1;
+            inputData.wrapping_S = 0;
+            inputData.wrapping_W = 0;
+        }
+        else if (wrappingDirectionInput == 'S') {
+            inputData.wrapping_H = 0;
+            inputData.wrapping_S = 1;
+            inputData.wrapping_W = 0;
+        }
+        else if (wrappingDirectionInput == 'W') {
+            inputData.wrapping_H = 0;
+            inputData.wrapping_S = 0;
+            inputData.wrapping_W = 1;
+        }
+        else {
+            inputData.wrapping_H = 0;
+            inputData.wrapping_S = 0;
+            inputData.wrapping_W = 0;
+        }
+        if (adultsubadultInput == 'C') {
+            inputData.adultsubadult_C = 1;
+        }
+        else {
+            inputData.adultsubadult_C = 0;
+        }
+        if (eastwestInput == 'W') {
+            inputData.eastwest_W = 1;
+        }
+        else {
+            inputData.eastwest_W = 0;
+        }
+        inputData.westtofeet = parseFloat(westToFeetInput);
+        inputData.southtofeet = parseFloat(southToFeetInput);
+        inputData.depth = parseFloat(depthInput);
+        inputData.southtohead = parseFloat(southToHeadInput);
+        inputData.westtohead = parseFloat(westToHeadInput);
+        inputData.length = parseFloat(lengthInput);
+
+        }
+        fetch('/predict', {
+            method: 'POST',
+            body: JSON.stringify(inputData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(prediction => {
+                console.log(prediction);
+                // Update the h4 tag with the prediction result
+                document.querySelector('#predictionResult').textContent = String(prediction.predictedValue);
+                console.log("it got here at least");
+            })
+            .catch(error => {
+                alert("Something went wrong...");
+            });
+    })
+</script>
