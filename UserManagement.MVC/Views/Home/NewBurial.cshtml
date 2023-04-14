@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Add Burial";
+}
+
+@model Burialmain
+<div>
+    <form method="post">
+        <div asp-validation-summary="All"> </div>
+        <table class=" table table-bordered">
+            <tbody>
+                <tr>
+                    <th>Square North-South</th>
+                    <td><input asp-for="Squarenorthsouth" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>North-South</th>
+                    <td><input asp-for="Northsouth" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>East-West</th>
+                    <td><input asp-for="Eastwest" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Depth</th>
+                    <td><input asp-for="Depth" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Length</th>
+                    <td><input asp-for="Length" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>South to Head</th>
+                    <td><input asp-for="Southtohead" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th> South to Feet</th>
+                    <td><input asp-for="Southtofeet" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>West to Head</th>
+                    <td><input asp-for="Westtohead" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Sex</th>
+                    <td><input asp-for="Sex" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Hair Color</th>
+                    <td><input asp-for="Haircolor" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Adult/Sub-Adult</th>
+                    <td><input asp-for="Adultsubadult" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Head Direction</th>
+                    <td><input asp-for="Headdirection" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Field Book Page</th>
+                    <td><input asp-for="Fieldbookpage" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Samples Collected</th>
+                    <td><input asp-for="Samplescollected" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Wrapping</th>
+                    <td><input asp-for="Wrapping" class="form-control" /></td>
+                </tr>
+                <tr>
+                    <th>Preservation</th>
+                    <td><input asp-for="Preservation" class="form-control" /></td>
+                </tr>
+            </tbody>
+        </table>
+        <button asp-controller="Home" asp-action="Summary" class="btn btn-outline-primary">Cancel</button>
+        <button asp-controller="Home" asp-action="Confirmation" type="submit" class="btn btn-primary">Add Burial</button>
+    </form>
+</div>

@@ -9,10 +9,10 @@
 
 <div class="card bg-light">
     <h2 style="color:red"> CONFIRM DELETE</h2>
-    <h3> Are you sure you want to remove Burial: @Model.Id,from the BurialMain Database</h3>
-    <h4>Deleting this burial from the database will be permanant</h4>
+    <h3> Are you sure you want to remove Burial: @Model.Id from the BurialMain Database</h3>
+    <h4>Deleting this burial from the database will be permanent</h4>
 
-    <form method="post" asp-action="DeleteFilm">
+    <form method="post" asp-action="DeleteBurialConfirmation">
         <button  style="color:red" type="submit">Yes, Delete Burial</button>
         <a asp-controller="Home" asp-action="DetailedBurial" asp-route-id="@Model.Id" class="btn btn-outline-primary">Cancel</a>
         <input type="hidden" asp-for="Id" />

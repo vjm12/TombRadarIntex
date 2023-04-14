@@ -87,7 +87,7 @@ namespace UserManagement.MVC.Controllers
             _fagContext.Update(bm);
             _fagContext.SaveChanges();
 
-            return RedirectToAction();
+            return RedirectToAction("DetailedBurial", new { id = bm.Id });
         }
         //Delete Burial Confirmation Page -- Requires Authorization
         [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
@@ -106,6 +106,56 @@ namespace UserManagement.MVC.Controllers
             _fagContext.SaveChanges();
             return RedirectToAction("Summary");
         }
+        //Confirmation page for new records
+        [Authorize(Roles="SuperAdmin,Admin,Researcher")]
+        public IActionResult Confirmation()
+        {
+            return View();
+        }
+        //Add New burial
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        [HttpGet]
+        public IActionResult NewBurial()
+        {
+            return View();
+        }
+        //Save new burial
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        public IActionResult NewBurial(Burialmain bm)
+        {
+            if (ModelState.IsValid)
+            {
+                _fagContext.Add(bm);
+                _fagContext.SaveChanges();
+                return View("Confirmation", bm);
+            }
+            else
+            {
+                return View(bm);
+            }
+        }
+        //Add New Textile
+        [Authorize(Roles ="SuperAdmin,Admin,Researcher")]
+        [HttpGet]
+        public IActionResult NewTextile()
+        {
+            return View();
+        }
+        //Save new textile
+        [Authorize(Roles ="SuperAdmin,Admin,Researcher")]
+        public IActionResult NewTextile(Textile t)
+        {
+            if (ModelState.IsValid)
+            {
+                _fagContext.Add(t);
+                _fagContext.SaveChanges();
+                return View("Confirmation", t);
+            }
+            else
+            {
+                return View(t);
+            }
+        }
         //Save Textile Changes - Requires authorization
         [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
         [HttpPost]
@@ -114,8 +164,17 @@ namespace UserManagement.MVC.Controllers
             _fagContext.Update(t);
             _fagContext.SaveChanges();
 
-            return RedirectToAction();
+            return RedirectToAction("Summary");
         }
+        //Delete Burial Confirmation Page -- Requires Authorization
+        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        [HttpGet]
+        public IActionResult DeleteTextileConfirmation(long id)
+        {
+            var specifictextile = repo.textiles.SingleOrDefault(x => x.Id == id);
+            return View(specifictextile);
+        }
+
         //Save Textile Removal - Requires authorization
         [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
         [HttpPost]
