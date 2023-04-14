@@ -93,7 +93,7 @@
                 <input type="number" step="any" id="Length" class="form-control myInput" name="Length" value="0">
             </div>
             <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
-                <label for="WrappingH" class="myLabelSuper">Wrapping H:</label>
+                <label for="WrappingH" class="myLabelSuper">Partial Wrapping:</label>
                 <select id="WrappingH" class="form-control myInput" name="WrappingH">
                     <option value="0" selected>No</option>
                     <option value="1">Yes</option>
@@ -101,7 +101,7 @@
             </div>
 
             <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
-                <label for="WrappingS" class="myLabelSuper">Wrapping S:</label>
+                <label for="WrappingS" class="myLabelSuper">No Wrapping</label>
                 <select id="WrappingS" class="form-control myInput" name="WrappingS">
                     <option value="0" selected>No</option>
                     <option value="1">Yes</option>
@@ -109,7 +109,7 @@
             </div>
 
             <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
-                <label for="WrappingW" class="myLabelSuper">Wrapping W:</label>
+                <label for="WrappingW" class="myLabelSuper">Full Wrapping</label>
                 <select id="WrappingW" class="form-control myInput" name="WrappingW">
                     <option value="0">No</option>
                     <option value="1" selected>Yes</option>
@@ -124,6 +124,7 @@
 </form>
 <h4 class="text-white">Prediction:</h4>
 <h4 class="text-white" id="predictionResult"></h4>
+<p class="text-white">Key: E = East, W = West</p>
 <script>
     const customButton = document.getElementById('custom-button');
     customButton.addEventListener('click', function (event) {
