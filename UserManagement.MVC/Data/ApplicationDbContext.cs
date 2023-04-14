@@ -9,12 +9,12 @@ using UserManagement.MVC.Models;
 namespace UserManagement.MVC.Data
 {
     //rename table names to be more simple and intuitive
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
-       
+       public DbSet<UserRolesViewModel> MyModels { get; set; }
     }
 }

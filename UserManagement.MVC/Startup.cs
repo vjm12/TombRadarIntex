@@ -12,6 +12,7 @@ using UserManagement.MVC.Models;
 using UserManagement.MVC.Views.Components;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using Microsoft.ML.OnnxRuntime;
+using System.Threading.Tasks;
 
 namespace UserManagement.MVC
 {
@@ -27,13 +28,11 @@ namespace UserManagement.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddDbContext<ApplicationDbContext>(options =>
-             //    options.UseSqlServer(
-             //        Configuration.GetConnectionString("DefaultConnection")));
-             //services.AddDatabaseDeveloperPageExceptionFilter();
+            
              services.AddDbContext<ApplicationDbContext>(options =>
                  options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             //services.AddControllersWithViews();
             //services.AddIdentity<IdentityUser, IdentityRole>()
@@ -126,7 +125,39 @@ namespace UserManagement.MVC
                     "img-src 'self'; " +
                     "frame-src 'self';"
                    );
+                
+                if (env.IsDevelopment())
+                {
+                    using (var scope = app.ApplicationServices.CreateScope())
+                    {
+                        var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                        var roles = new[] { "SuperAdmin" };
+                        foreach (var role in roles)
+                        {
+                            if (!await roleManager.RoleExistsAsync(role))
+                                await roleManager.CreateAsync(new IdentityRole(role));
+                        }
+
+                    }
+                    using (var scope = app.ApplicationServices.CreateScope())
+                    {
+                        var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+                        string email = "SuperUser@TombRadar.com";
+                        string password = "Intex2023!Egypt";
+                        if (await userManager.FindByEmailAsync(email) == null)
+                        {
+                            var user = new IdentityUser();
+                            user.UserName = email;
+                            user.Email = email;
+
+                            await userManager.CreateAsync(user, password);
+                            await userManager.AddToRoleAsync(user, "SuperAdmin");
+
+                        }
+                    }
+                }
                 await next();
+
             });
 
             app.UseEndpoints(endpoints =>
@@ -141,6 +172,9 @@ namespace UserManagement.MVC
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-        }
+            
+
+            }
+
     }
 }

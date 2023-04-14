@@ -1,9 +1,10 @@
 ﻿@model List<ManageUserRolesViewModel>
+
 @{
     ViewData["Title"] = "Manage";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!--this page allows for the admin to add or remove roles from a user-->
+
 <form method="post">
     <div class="card">
         <div class="card-header">
@@ -25,7 +26,7 @@
             <div asp-validation-summary="All" class="text-danger"></div>
         </div>
         <div class="card-footer">
-            <input type="submit" value="Update" class="btn btn-primary"
+            <input asp-controller="UserRoles" asp-action="Index" type="submit" value="Update" class="btn btn-primary"
                    style="width:auto" />
             <a asp-controller="UserRoles" asp-action="Index" asp-route-id="@ViewBag.userId"
                class="btn btn-primary" style="width:auto">Cancel</a>
