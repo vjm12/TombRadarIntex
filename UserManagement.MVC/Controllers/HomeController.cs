@@ -71,7 +71,7 @@ namespace UserManagement.MVC.Controllers
         }
 
         //Edit Textile View -- Requires Authorization
-        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        //[Authorize(Roles = "SuperAdmin,Admin,Researcher")]
         [HttpGet]
         public IActionResult EditTextile(long id)
         {
@@ -107,20 +107,20 @@ namespace UserManagement.MVC.Controllers
             return RedirectToAction("Summary");
         }
         //Confirmation page for new records
-        [Authorize(Roles="SuperAdmin,Admin,Researcher")]
+        //[Authorize(Roles="SuperAdmin,Admin,Researcher")]
         public IActionResult Confirmation()
         {
             return View();
         }
         //Add New burial
-        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        //[Authorize(Roles = "SuperAdmin,Admin,Researcher")]
         [HttpGet]
         public IActionResult NewBurial()
         {
             return View();
         }
         //Save new burial
-        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        //[Authorize(Roles = "SuperAdmin,Admin,Researcher")]
         public IActionResult NewBurial(Burialmain bm)
         {
             if (ModelState.IsValid)
@@ -167,7 +167,7 @@ namespace UserManagement.MVC.Controllers
             return RedirectToAction("Summary");
         }
         //Delete Burial Confirmation Page -- Requires Authorization
-        [Authorize(Roles = "SuperAdmin,Admin,Researcher")]
+        //[Authorize(Roles = "SuperAdmin,Admin,Researcher")]
         [HttpGet]
         public IActionResult DeleteTextileConfirmation(long id)
         {

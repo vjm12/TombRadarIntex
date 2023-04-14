@@ -42,7 +42,8 @@ namespace UserManagement.MVC
             //.AddDefaultTokenProviders();
             services.AddControllersWithViews();
             services.AddRazorPages();
-
+            services.AddSingleton<InferenceSession>(
+                    new InferenceSession("wwwroot/model1-2.onxx"));
             //for repository pattern of fag database
             services.AddScoped<IFagElGamousRepository, EFFagELGamousRepository>();
 
