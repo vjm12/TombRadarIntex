@@ -27,7 +27,7 @@
 <form>
     <div class="row text-center" style="padding-top:50px">
         <div class="col-7">
-            <h4>Fill out the form to predict what direction your mummy would most likely be facing</h4>
+            <h4 class="text-white">Fill out the form to predict what direction your mummy would most likely be facing!</h4>
             <div class="form-group" style="color:white; margin-top:10px; margin-bottom:15px">
                 <label for="AreaDirection" class="myLabelSuper">Area:</label>
                 <select id="AreaDirection" class="form-control myInput" name="AreaDirection">
@@ -118,12 +118,12 @@
 
 
 
-            <button id="custom-button">Predict Wrapping!</button>
+            <button id="custom-button">Predict Head Direction!</button>
         </div>
     </div>
 </form>
-<h4>Prediction:</h4>
-<h4 id="predictionResult"></h4>
+<h4 class="text-white">Prediction:</h4>
+<h4 class="text-white" id="predictionResult"></h4>
 <script>
     const customButton = document.getElementById('custom-button');
     customButton.addEventListener('click', function (event) {

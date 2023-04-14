@@ -39,8 +39,7 @@ namespace UserManagement.MVC
             services.AddScoped<IFagElGamousRepository, EFFagELGamousRepository>();
 
             services.AddSingleton<InferenceSession>(
-                new InferenceSession("C:\\Users\\carsondudley\\Source\\Repos\\TombRadarIntex1\\UserManagement.MVC\\Models\\model1-2.onxx"));
-
+                new InferenceSession("wwwroot/model1-2.onxx"));
 
             //connect to postgresconnection
             services.AddDbContext<fagContext>(options => {
